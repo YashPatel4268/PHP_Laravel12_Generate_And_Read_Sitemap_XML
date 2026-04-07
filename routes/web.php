@@ -11,3 +11,5 @@ Route::get('/', function () {
 
 // Sitemap Routes
 Route::get('/sitemap.xml', [SitemapController::class, 'index']);
+Route::get('/generate-sitemap', [SitemapController::class, 'generateFile']);
+Route::get('/clear-sitemap-cache', [SitemapController::class, 'clearCache']);
