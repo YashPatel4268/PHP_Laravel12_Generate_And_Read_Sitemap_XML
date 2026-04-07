@@ -32,6 +32,17 @@ class SitemapController extends Controller
         // Render XML view
         $xml = view('sitemap.index', compact('posts'))->render();
 
+        // Save file in public folder
+        file_put_contents(public_path('sitemap.xml'), $xml);
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Sitemap file generated successfully!'
+        ]);
+    }
+
+    /**
+     * Clear sitemap cache manually
      */
     public function clearCache()
     {
