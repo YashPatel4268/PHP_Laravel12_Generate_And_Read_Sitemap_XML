@@ -19,38 +19,7 @@ class SitemapController extends Controller
         });
 
         return response()->view('sitemap.index', compact('posts'))
-            ->header('Content-Type', 'application/xml');
-    }
-
-    /**
-     * Generate static sitemap.xml file in public folder
-     */
-    public function generateFile()
-    {
-        $posts = Post::latest()->get();
-
-        // Render XML view
-        $xml = view('sitemap.index', compact('posts'))->render();
-
-        // Save file in public folder
-        file_put_contents(public_path('sitemap.xml'), $xml);
-
-        return response()->json([
-            'status' => true,
-            'message' => 'Sitemap file generated successfully!'
-        ]);
-    }
-
-    /**
-     * Clear sitemap cache manually
-     */
-    public function clearCache()
-    {
-        Cache::forget('sitemap_posts');
-
-        return response()->json([
-            'status' => true,
-            'message' => 'Sitemap cache cleared successfully!'
-        ]);
+                         ->header('Content-Type', 'application/xml');
+                        
     }
 }
